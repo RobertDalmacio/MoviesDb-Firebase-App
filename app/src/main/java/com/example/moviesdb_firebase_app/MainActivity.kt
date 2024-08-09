@@ -1,41 +1,30 @@
 package com.example.moviesdb_firebase_app
 
-import android.content.Intent
 import android.os.Bundle
-import android.widget.ImageButton
-import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import com.google.firebase.Firebase
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.auth
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.setupActionBarWithNavController
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var auth: FirebaseAuth
-
     override fun onCreate(savedInstanceState: Bundle?) {
-        auth = Firebase.auth
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val logoutButton = findViewById<ImageButton>(R.id.btn_logout)
-        val userDetails = findViewById<TextView>(R.id.tv_userDetails)
-        val currentUser = auth.currentUser
+        val navHostFragment = supportFragmentManager.findFragmentById(R.id.fragmentContainerView) as NavHostFragment
+        val navController = navHostFragment.navController
 
-        if (currentUser == null) {
-            val intent = Intent(applicationContext, LoginActivity::class.java)
-            startActivity(intent)
-            finish()
-        } else {
-            userDetails.text = currentUser.email
-        }
+        val appBarConfigurationBuilder = AppBarConfiguration.Builder(navController.graph)
+        val appBarConfiguration = appBarConfigurationBuilder.build()
 
-        logoutButton.setOnClickListener {
-            Firebase.auth.signOut()
-            val intent = Intent(applicationContext, LoginActivity::class.java)
-            startActivity(intent)
-            finish()
-        }
+        setupActionBarWithNavController(navController, appBarConfiguration)
+    }
 
+    override fun onSupportNavigateUp(): Boolean {
+        val navHostFragment = supportFragmentManager.findFragmentById(R.id.fragmentContainerView) as NavHostFragment
+        val navController = navHostFragment.navController
+
+        return navController.navigateUp() || super.onSupportNavigateUp()
     }
 }

@@ -3,8 +3,11 @@ package com.example.moviesdb_firebase_app
 import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
+import android.text.method.HideReturnsTransformationMethod
+import android.text.method.PasswordTransformationMethod
 import android.view.View
 import android.widget.Button
+import android.widget.ImageButton
 import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.Toast
@@ -17,6 +20,8 @@ import com.google.firebase.auth.auth
 class RegisterActivity : AppCompatActivity() {
 
     private lateinit var auth: FirebaseAuth
+    private var passwordVisible = false
+    private var password2Visible = false
 
     public override fun onStart() {
         super.onStart()
@@ -39,11 +44,44 @@ class RegisterActivity : AppCompatActivity() {
         val registerButton = findViewById<Button>(R.id.btn_register)
         val progressBar = findViewById<ProgressBar>(R.id.pb_register)
         val loginLink = findViewById<TextView>(R.id.tv_login)
+        val visibilityButton1 = findViewById<ImageButton>(R.id.ib_togglePasswordVisibilityRegister)
+        val visibilityButton2 = findViewById<ImageButton>(R.id.ib_togglePassword2VisibilityRegister)
 
+        // login text link
         loginLink.setOnClickListener{
             val intent = Intent(applicationContext, LoginActivity::class.java)
             startActivity(intent)
             finish()
+        }
+
+        // password visibility button
+        visibilityButton1.setOnClickListener {
+            passwordVisible = !passwordVisible
+            // toggle password visibility
+            if (passwordVisible) {
+                editTextPassword.transformationMethod = HideReturnsTransformationMethod.getInstance()
+                visibilityButton1.setImageResource(R.drawable.ic_visibility_off)
+            } else {
+                editTextPassword.transformationMethod = PasswordTransformationMethod.getInstance()
+                visibilityButton1.setImageResource(R.drawable.ic_visibility)
+            }
+            // bring cursor to the end
+            editTextPassword.setSelection(editTextPassword.text?.length ?: 0)
+        }
+
+        // confirm password visibility button
+        visibilityButton2.setOnClickListener {
+            password2Visible = !password2Visible
+            // toggle password visibility
+            if (password2Visible) {
+                editTextPassword2.transformationMethod = HideReturnsTransformationMethod.getInstance()
+                visibilityButton2.setImageResource(R.drawable.ic_visibility_off)
+            } else {
+                editTextPassword2.transformationMethod = PasswordTransformationMethod.getInstance()
+                visibilityButton2.setImageResource(R.drawable.ic_visibility)
+            }
+            // bring cursor to the end
+            editTextPassword2.setSelection(editTextPassword.text?.length ?: 0)
         }
 
         registerButton.setOnClickListener {
@@ -72,15 +110,21 @@ class RegisterActivity : AppCompatActivity() {
                     progressBar.visibility = View.GONE
                     if (task.isSuccessful) {
                         Toast.makeText(baseContext, "Account created.", Toast.LENGTH_SHORT).show()
-                        val intent = Intent(applicationContext, LoginActivity::class.java)
+                        // navigate to MainActivity
+                        val intent = Intent(applicationContext, MainActivity::class.java)
                         startActivity(intent)
                         finish()
                     } else {
                         Toast.makeText(baseContext, "Authentication failed: ${task.exception?.message}", Toast.LENGTH_LONG).show()
                     }
                 }
-
-
         }
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        val intent = Intent(applicationContext, LoginActivity::class.java)
+        startActivity(intent)
+        finish()
     }
 }

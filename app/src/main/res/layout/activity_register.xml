@@ -32,31 +32,66 @@ tools:context=".RegisterActivity">
         android:padding="10dp"/>
 </com.google.android.material.textfield.TextInputLayout>
 
-<com.google.android.material.textfield.TextInputLayout
+<FrameLayout
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_marginBottom="15dp">
-    <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/et_passwordRegister"
-        android:hint="Password"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="textPassword"
-        android:padding="10dp"/>
-</com.google.android.material.textfield.TextInputLayout>
+    android:layout_height="wrap_content">
 
-<com.google.android.material.textfield.TextInputLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_marginBottom="15dp">
-    <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/et_passwordRegister2"
-        android:hint="Confirm Password"
+    <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="textPassword"
-        android:padding="10dp"/>
-</com.google.android.material.textfield.TextInputLayout>
+        android:layout_marginBottom="15dp">
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/et_passwordRegister"
+            android:hint="Password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"
+            android:padding="10dp"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <ImageButton
+        android:id="@+id/ib_togglePasswordVisibilityRegister"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_visibility"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:layout_gravity="end|center_vertical"
+        android:padding="10dp"
+        android:layout_marginBottom="5dp"
+        android:layout_marginEnd="5dp"/>
+
+</FrameLayout>
+
+<FrameLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="10dp">
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="15dp">
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/et_passwordRegister2"
+            android:hint="Confirm Password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"
+            android:padding="10dp"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <ImageButton
+        android:id="@+id/ib_togglePassword2VisibilityRegister"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_visibility"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:layout_gravity="end|center_vertical"
+        android:padding="10dp"
+        android:layout_marginBottom="5dp"
+        android:layout_marginEnd="5dp"/>
+
+</FrameLayout>
 
 <ProgressBar
     android:id="@+id/pb_register"

@@ -1,0 +1,107 @@
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/rowLayout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#e5e5e5"
+    android:paddingTop="8dp"
+    android:paddingBottom="8dp">
+
+    <View
+        android:id="@+id/topBorder"
+        android:layout_width="match_parent"
+        android:layout_height="4dp"
+        android:background="#673bb8"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/topBackground"
+        android:layout_width="match_parent"
+        android:layout_marginTop="6dp"
+        android:layout_height="0dp"
+        android:background="#262626"
+        app:layout_constraintBottom_toTopOf="@+id/ivMoviePosterList"
+        app:layout_constraintTop_toBottomOf="@+id/topBorder" />
+
+    <ImageView
+        android:id="@+id/ivMoviePosterList"
+        android:layout_width="60dp"
+        android:layout_height="120dp"
+        android:layout_marginStart="6dp"
+        android:scaleType="centerCrop"
+        app:layout_constraintBottom_toTopOf="@+id/bottomBackground"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/topBackground"
+        tools:srcCompat="@drawable/default_poster" />
+
+    <TextView
+        android:id="@+id/tvMovieTitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:ellipsize="end"
+        android:maxLines="2"
+        android:text="Movie Title"
+        android:textColor="#000"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/tvCriticsRating"
+        app:layout_constraintStart_toEndOf="@+id/ivMoviePosterList"
+        app:layout_constraintTop_toTopOf="@+id/ivMoviePosterList" />
+
+    <TextView
+        android:id="@+id/tvStudioName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:text="Production Studio Name"
+        android:textColor="#000"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="@+id/tvMovieTitle"
+        app:layout_constraintStart_toStartOf="@+id/tvMovieTitle"
+        app:layout_constraintTop_toBottomOf="@+id/tvMovieTitle" />
+
+    <TextView
+        android:id="@+id/tvRatingLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:text="Rating:"
+        android:textColor="#000"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="@+id/tvCriticsRating"
+        app:layout_constraintEnd_toStartOf="@+id/tvCriticsRating"
+        app:layout_constraintTop_toTopOf="@+id/tvCriticsRating" />
+
+    <TextView
+        android:id="@+id/tvCriticsRating"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="99"
+        android:textColor="#673bb8"
+        android:layout_marginEnd="6dp"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/bottomBackground"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/ivMoviePosterList" />
+
+    <View
+        android:id="@+id/bottomBackground"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="#262626"
+        android:layout_marginBottom="6dp"
+        app:layout_constraintBottom_toTopOf="@+id/bottomBorder"
+        app:layout_constraintTop_toBottomOf="@+id/ivMoviePosterList" />
+
+    <View
+        android:id="@+id/bottomBorder"
+        android:layout_width="match_parent"
+        android:layout_height="4dp"
+        android:background="#673bb8 "
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

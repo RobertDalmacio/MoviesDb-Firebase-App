@@ -25,6 +25,7 @@ class LoginActivity : AppCompatActivity() {
     public override fun onStart() {
         super.onStart()
         val currentUser = auth.currentUser
+        // if logged in, show main activity
         if (currentUser != null) {
             val intent = Intent(applicationContext, MainActivity::class.java)
             startActivity(intent)
@@ -44,8 +45,10 @@ class LoginActivity : AppCompatActivity() {
         val registerLink = findViewById<TextView>(R.id.tv_register)
         val visibilityButton = findViewById<ImageButton>(R.id.ib_togglePasswordVisibility)
 
+        // password visibility button
         visibilityButton.setOnClickListener {
             passwordVisible = !passwordVisible
+            // toggle password visibility
             if (passwordVisible) {
                 editTextPassword.transformationMethod = HideReturnsTransformationMethod.getInstance()
                 visibilityButton.setImageResource(R.drawable.ic_visibility_off)
@@ -53,10 +56,13 @@ class LoginActivity : AppCompatActivity() {
                 editTextPassword.transformationMethod = PasswordTransformationMethod.getInstance()
                 visibilityButton.setImageResource(R.drawable.ic_visibility)
             }
+            // bring cursor to the end
             editTextPassword.setSelection(editTextPassword.text?.length ?: 0)
         }
 
+        // register text link
         registerLink.setOnClickListener{
+            // navigate to RegisterActivity
             val intent = Intent(applicationContext, RegisterActivity::class.java)
             startActivity(intent)
             finish()
@@ -82,6 +88,7 @@ class LoginActivity : AppCompatActivity() {
                     progressBar.visibility = View.GONE
                     if (task.isSuccessful) {
                         Toast.makeText(baseContext, "Login Successful.", Toast.LENGTH_SHORT).show()
+                        // navigate to MainActivity
                         val intent = Intent(applicationContext, MainActivity::class.java)
                         startActivity(intent)
                         finish()
@@ -93,5 +100,12 @@ class LoginActivity : AppCompatActivity() {
         }
 
 
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        val intent = Intent(applicationContext, RegisterActivity::class.java)
+        startActivity(intent)
+        finish()
     }
 }
